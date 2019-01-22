@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block my_body %}
+    <div class="jumbotron text-center container">
+        <h3>My Tasks</h3>
+        <br>
+        <h4>Employee : {{ employee.name }}</h4>
+
+        <table class="table table-=stripped table-hover">
+            <tr>
+                <td>Name</td>
+                <td>{{ task.name }}</td>
+            </tr>
+            <tr>
+                <td>Start Date</td>
+                <td>{{ task.start_date }}</td>
+            </tr>
+            <tr>
+                <td>Deadline</td>
+                <td>{{ task.deadline }}</td>
+            </tr>
+        </table>
+
+{#        <form method="post"></form>#}
+{#        <label for="description">Description</label>#}
+{#        <input name="description" id="description">#}
+{#        <br>#}
+        <a href="{% url "submit_task" task_id=task.id %}"><button class="btn btn-success">Submit</button></a>
+
+        <a href="{% url "my_tasks" %}"><button class="btn btn-info">Go Back</button></a>
+    </div>
+{% endblock %}

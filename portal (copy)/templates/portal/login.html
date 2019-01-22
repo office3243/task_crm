@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block my_body %}
+    <div class="jumbotron text-center container">
+        <h3>Welcome To Task Management</h3>
+        <br>
+
+       <div class="container">
+                      {% if form.errors %}
+                            <span class="alert-danger">
+                                Wrong Username or Password
+                            </span><br><br>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username : </label><br>
+                            <input required class="form-control" type="text" name="username" id="username" placeholder="Enter your email or phone">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="password">Password : </label><br>
+                            <input required class="form-control" type="password" name="password" id="password" placeholder="Enter your password">
+                        </div>
+                        <button class="btn btn-primary">Login</button>
+                    </form>
+                    <br>
+                </div>
+    </div>
+{% endblock %}

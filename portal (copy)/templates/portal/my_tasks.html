@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block my_body %}
+    <div class="jumbotron text-center container">
+        <h3>My Tasks</h3>
+        <br>
+        <h4>Employee : {{ employee.name }}</h4>
+        <center>
+            <select style="width: 200px" class="form-control" onchange="ch();" id="show">
+                <option value="completed">Pending</option>
+                <option value="pending">Completed</option>
+            </select>
+        </center>
+    <br><br>
+
+        <div id="pending_tasks">
+            <table class="table table-=stripped table-hover">
+                <tr>
+                    <td colspan="4" class="info">Pending Tasks</td>
+                </tr>
+                <tr>
+                    <td>no.</td>
+                    <td>Name</td>
+                    <td>Start Date</td>
+                    <td>Deadline</td>
+                </tr>
+                {% for task in pending_tasks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{% url "task_details" task_id=task.id%}" >{{ task.name }}</a></td>
+                        <td>{{ task.start_date }}</td>
+                        <td>{{ task.deadline }}</td>
+                    </tr>
+                {% endfor%}
+            </table>
+        </div>
+
+        <div style="display: none" id="completed_tasks" >
+            <table class="table table-=stripped table-hover">
+                <tr>
+                    <td colspan="4" class="info">Completed Tasks</td>
+                </tr>
+                <tr>
+                    <td>no.</td>
+                    <td>Name</td>
+                    <td>Start Date</td>
+                    <td>Deadline</td>
+                </tr>
+                {% for task in completed_tasks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{% url "task_details" task_id=task.id%}" >{{ task.name }}</a></td>
+                        <td>{{ task.start_date }}</td>
+                        <td>{{ task.deadline }}</td>
+                    </tr>
+                {% endfor%}
+            </table>
+        </div>
+
+
+
+        <a href="{% url "home" %}"><button class="btn btn-info">Go to Home</button></a>
+    </div>
+
+    <script>
+        function ch(){
+
+            var val = document.getElementById('show');
+
+            if (val.value === "pending"){
+                document.getElementById('completed_tasks').style.display="block";
+                document.getElementById('pending_tasks').style.display="none";
+            }
+            else if (val.value==="completed"){
+                document.getElementById('completed_tasks').style.display="none";
+                document.getElementById('pending_tasks').style.display="block";
+            }
+        }
+    </script>
+
+{% endblock %}

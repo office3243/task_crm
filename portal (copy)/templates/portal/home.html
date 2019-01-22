@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block my_body %}
+    <div class="jumbotron text-center container">
+        <h3>Task Management</h3>
+        <br>
+        <h4>Employee : {{ employee.name }}</h4>
+        <br><br>
+        <a href="{% url "logout" %}"><button class="btn btn-danger">Logout</button></a>
+
+        <a style="margin: 20px" href="{% url "my_tasks" %}"><button class="btn btn-info">My Tasks</button></a>
+
+    </div>
+{% endblock %}
